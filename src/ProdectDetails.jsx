@@ -1,19 +1,28 @@
-import React from "react";
+import React, { useState } from "react";
 
 export default function ProductDetails() {
+  const [activeColor, setActiveColor] = useState(0);
+  const [activeSize, setActiveSize] = useState(null);
+
+  const colors = [
+    "rgb(245, 242, 235)",
+    "rgb(176, 107, 86)",
+    "rgb(67, 62, 56)",
+  ];
+
   return (
-    <div className="flex flex-col lg:flex-row items-start justify-between gap-12 p-6 lg:p-16">
+    <div className="flex  flex-col lg:flex-row items-start justify-between gap-12 p-6 lg:p-16">
       
-     
-      <div className=" aspect-4/5  overflow-hidden">
+      {/* Image */}
+      <div className="aspect-4/5 overflow-hidden">
         <img
-          src="/productimg.avif"
+          src="productimg.avif"
           alt="product"
-          className="lg:w-[90%] w-full h-[95%] object-cover  opacity-95 "
+          className="lg:w-[90%] w-full h-[95%] object-cover opacity-95"
         />
       </div>
 
-   
+      {/* Details */}
       <div className="w-full lg:w-1/2 flex flex-col justify-center max-w-xl">
         <span className="text-sm font-medium text-[#A8A29E] uppercase tracking-widest mb-2">
           Wearable
@@ -36,41 +45,29 @@ export default function ProductDetails() {
           hours.
         </p>
 
-      
+        {/* Colors */}
         <span className="block text-xs font-bold uppercase tracking-widest mb-4 text-[#2C2A26]">
           Object Finish
         </span>
 
         <div className="flex gap-4 mb-8">
-          <button
-         
-            className="w-10 h-10 rounded-full border-2 border-[#2C2A26] p-1"
-          >
-            <div
-              className="w-full h-full rounded-full"
-              style={{ backgroundColor: "rgb(245, 242, 235)" }}
-            />
-          </button>
-
-          <button
-           
-            className="w-10 h-10 rounded-full border-2 border-transparent hover:scale-110 transition"
-          >
-            <div
-              className="w-full h-full rounded-full"
-              style={{ backgroundColor: "rgb(176, 107, 86)" }}
-            />
-          </button>
-
-          <button
-           
-            className="w-10 h-10 rounded-full border-2 border-transparent hover:scale-110 transition"
-          >
-            <div
-              className="w-full h-full rounded-full"
-              style={{ backgroundColor: "rgb(67, 62, 56)" }}
-            />
-          </button>
+          {colors.map((color, index) => (
+            <button
+              key={index}
+              onClick={() => setActiveColor(index)}
+              className={`w-10 h-10 rounded-full p-1 transition border-[#2C2A26]
+                ${
+                  activeColor === index
+                    ? "border-2 border-[#2C2A26]"
+                    : " border-[.1px] border-[#a5a19b] hover:scale-110"
+                }`}
+            >
+              <div
+                className="w-full h-full rounded-full"
+                style={{ backgroundColor: color }}
+              />
+            </button>
+          ))}
         </div>
 
         {/* Sizes */}
@@ -83,7 +80,13 @@ export default function ProductDetails() {
             {["S", "M", "L"].map((size) => (
               <button
                 key={size}
-                className="w-12 h-12 flex items-center justify-center border border-[#D6D1C7] text-[#5D5A53] hover:border-[#2C2A26] transition"
+                onClick={() => setActiveSize(size)}
+                className={`w-12 h-12 flex items-center justify-center transition
+                  ${
+                    activeSize === size
+                      ? "border border-[#2C2A26] text-[#2C2A26] font-semibold"
+                      : "border border-[#D6D1C7] text-[#5D5A53] hover:border-[#2C2A26]"
+                  }`}
               >
                 {size}
               </button>
@@ -91,10 +94,14 @@ export default function ProductDetails() {
           </div>
         </div>
 
-     
+      
         <div className="flex flex-col gap-4">
           <div className="flex gap-4">
-            <button className="flex-1 py-5 bg-[#2C2A26] text-[#F5F2EB] uppercase tracking-widest text-sm font-medium hover:bg-[#433E38] transition">
+            <button
+             
+              className={`flex-1 py-5 uppercase tracking-widest text-sm font-medium transition bg-[#2C2A26] text-[#F5F2EB] hover:bg-[#433E38]
+                `}
+            >
               Add to Cart — $349
             </button>
 
@@ -106,8 +113,8 @@ export default function ProductDetails() {
             </button>
           </div>
 
-          <ul className="mt-8 space-y-2 text-sm text-[#5D5A53]">
-            <li className="flex items-center gap-3 ">
+          <ul className="mt-8 space-y-2 text-sm text-[#5D5A53] ">
+            <li className="flex items-center gap-3">
               <span className="w-1 h-1 bg-[#2C2A26] rounded-full" />
               Stress Monitoring
             </li>
