@@ -1,22 +1,28 @@
-import React from 'react'
-import ProdectDetails from './prodectDetails'
-import ItemsRelated from './ItemsRelated'
+import { Routes, Route } from "react-router-dom";
+import Hero from "./pages/Hero";
+import Navbar from "./pages/Navbar";
+import Experience from "./pages/Experince";
+import Menu from "./pages/Menu";
+import MenuDemo from "./pages/MenuDemo";
+import ExperienceMain from "./pages/ExperienceMain";
 
 export default function App() {
   return (
-    <>
-    
-    <ProdectDetails/>
-
-
- <div className='p-6  lg:p-16 '>
-     <h3 className=' border-t border-[#D6D1C7]   text-2xl font-serif text-[#2C2A26] mt-8   '>
-     You Might Also Like 
-     </h3>
-    <div className="grid grid-cols-1 md:grid-cols-3 gap-8  mt-8">
-    <ItemsRelated/>
-    </div>
- </div>
-    </>
-  )
+    <Routes>
+      <Route
+        path="/"
+        element={
+          <>
+            <Navbar />
+            <Hero />
+            <Experience />
+            <Menu />
+             <ExperienceMain />
+          </>
+        }
+      />
+      {/* route ديناميكي — slug بتاع كل item */}
+      <Route path="/menu/:slug" element={<MenuDemo />} />
+    </Routes>
+  );
 }
