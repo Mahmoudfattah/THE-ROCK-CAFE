@@ -5,36 +5,36 @@ import { useLang } from "../context/Context";
 // ─── Photos per section (each has its own set) ───────────────────────────────
 const SECTION_PHOTOS = {
   cozy: [
-    { src: "/cozy1.webp", alt: { en: "Cozy seating",    ar: "جلسات مريحة"   } },
-    { src: "/cozy2.webp", alt: { en: "Warm lighting",   ar: "إضاءة دافئة"   } },
-    { src: "/cozy3.webp", alt: { en: "Lounge area",     ar: "منطقة الاسترخاء" } },
-    { src: "/cozy4.webp", alt: { en: "Indoor plants",   ar: "نباتات داخلية"  } },
-    { src: "/cozy5.webp", alt: { en: "Corner table",    ar: "طاولة الزاوية"  } },
-    { src: "/cozy6.webp", alt: { en: "Evening ambiance",ar: "أجواء المساء"   } },
+    { src: "/20.webp", alt: { en: "Cozy seating",    ar: "جلسات مريحة"   } },
+    { src: "/22.webp", alt: { en: "Warm lighting",   ar: "إضاءة دافئة"   } },
+    { src: "/11.webp", alt: { en: "Lounge area",     ar: "منطقة الاسترخاء" } },
+    { src: "/23.webp", alt: { en: "Indoor plants",   ar: "نباتات داخلية"  } },
+    { src: "/13.webp", alt: { en: "Corner table",    ar: "طاولة الزاوية"  } },
+    { src: "/22.webp", alt: { en: "Evening ambiance",ar: "أجواء المساء"   } },
   ],
   specialty: [
-    { src: "/item.webp", alt: { en: "Coffee brewing",  ar: "تحضير القهوة"   } },
-    { src: "/item.webp", alt: { en: "Latte art",       ar: "فن اللاتيه"    } },
-    { src: "/item.webp", alt: { en: "Arabic coffee",   ar: "قهوة عربية"    } },
-    { src: "/item.webp", alt: { en: "Barista at work", ar: "البريستا"       } },
-    { src: "/item.webp", alt: { en: "Iced drinks",     ar: "مشروبات باردة" } },
-    { src: "/item.webp", alt: { en: "Espresso shot",   ar: "إسبريسو"       } },
+    { src: "/17.webp", alt: { en: "Coffee brewing",  ar: "تحضير القهوة"   } },
+    { src: "/9.webp", alt: { en: "Latte art",       ar: "فن اللاتيه"    } },
+    { src: "/14.webp", alt: { en: "Arabic coffee",   ar: "قهوة عربية"    } },
+    { src: "/15.webp", alt: { en: "Barista at work", ar: "البريستا"       } },
+    { src: "/19.webp", alt: { en: "Iced drinks",     ar: "مشروبات باردة" } },
+    { src: "/18.webp", alt: { en: "Espresso shot",   ar: "إسبريسو"       } },
   ],
   pastries: [
-    { src: "/pastry1.webp", alt: { en: "Fresh pastries",   ar: "معجنات طازجة"   } },
-    { src: "/pastry2.webp", alt: { en: "Cakes display",    ar: "عرض الكيك"     } },
-    { src: "/pastry3.webp", alt: { en: "Dessert plating",  ar: "تقديم الحلويات" } },
-    { src: "/pastry4.webp", alt: { en: "Croissants",       ar: "كرواسون"       } },
-    { src: "/pastry5.webp", alt: { en: "Morning bakery",   ar: "مخبوزات الصباح" } },
-    { src: "/pastry6.webp", alt: { en: "Cookies",          ar: "كوكيز"         } },
+    { src: "/37.webp", alt: { en: "Fresh pastries",   ar: "معجنات طازجة"   } },
+    { src: "/12.webp", alt: { en: "Cakes display",    ar: "عرض الكيك"     } },
+    { src: "/21.webp", alt: { en: "Dessert plating",  ar: "تقديم الحلويات" } },
+    { src: "/5.webp", alt: { en: "Croissants",       ar: "كرواسون"       } },
+    { src: "/8.webp", alt: { en: "Morning bakery",   ar: "مخبوزات الصباح" } },
+    { src: "/10.webp", alt: { en: "Cookies",          ar: "كوكيز"         } },
   ],
   work: [
-    { src: "/work1.webp", alt: { en: "Work desk",       ar: "طاولة عمل"       } },
-    { src: "/work2.webp", alt: { en: "Study area",      ar: "منطقة دراسة"    } },
-    { src: "/work3.webp", alt: { en: "Laptop corner",   ar: "ركن اللابتوب"   } },
-    { src: "/work4.webp", alt: { en: "Community table", ar: "طاولة مشتركة"   } },
-    { src: "/work5.webp", alt: { en: "Power outlets",   ar: "منافذ كهرباء"   } },
-    { src: "/work6.webp", alt: { en: "Quiet zone",      ar: "منطقة هادئة"    } },
+    { src: "/4.jpg", alt: { en: "Work desk",       ar: "طاولة عمل"       } },
+    { src: "/6.webp", alt: { en: "Study area",      ar: "منطقة دراسة"    } },
+    { src: "/7.webp", alt: { en: "Laptop corner",   ar: "ركن اللابتوب"   } },
+    // { src: "/7.webp", alt: { en: "Community table", ar: "طاولة مشتركة"   } },
+    { src: "/33.webp", alt: { en: "Power outlets",   ar: "منافذ كهرباء"   } },
+    { src: "/34.webp", alt: { en: "Quiet zone",      ar: "منطقة هادئة"    } },
   ],
 };
 
@@ -199,7 +199,7 @@ export default function ExperienceMain() {
         /* ── Title ── */
         .exp-title {
           font-size: clamp(1.45rem,4vw,2.65rem);
-          font-weight: 400;
+          font-weight: 500;
           line-height: 1.05;
           letter-spacing: 0.04em;
           color: #F0E8DC;
@@ -207,7 +207,7 @@ export default function ExperienceMain() {
         }
         .exp-title.is-rtl {
           font-family: 'Tajawal', sans-serif;
-          font-weight: 800;
+          font-weight: 500;
           letter-spacing: 0;
         }
         [data-theme="light"] .exp-title { color: #1C1A18; }
@@ -218,6 +218,7 @@ export default function ExperienceMain() {
         .exp-desc-desktop {
           font-size: clamp(.83rem,1.8vw,.97rem);
           color: #7A7470;
+          font-weight: 500;
           line-height: 1.65;
           text-align: center;
           transition: color 0.35s ease;
@@ -309,7 +310,7 @@ export default function ExperienceMain() {
           width: clamp(185px,27vw,315px);
           height: clamp(122px,18vw,205px);
           object-fit: cover;
-          border-radius: 8px;
+          border-radius: 0px;
           filter: brightness(.80) saturate(.82);
           display: block;
           cursor: pointer;

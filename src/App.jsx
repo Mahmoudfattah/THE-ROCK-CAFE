@@ -5,9 +5,13 @@ import Experience from "./pages/Experince";
 import Menu from "./pages/Menu";
 import MenuDemo from "./pages/MenuDemo";
 import ExperienceMain from "./pages/ExperienceMain";
+import FooterWithReviews from "./pages/Footer";
+import FloatingCTA from "./pages/FloatingCta";
 
 export default function App() {
   return (
+    <>
+    {/* <FloatingCTA /> */}
     <Routes>
       <Route
         path="/"
@@ -18,11 +22,13 @@ export default function App() {
             <Experience />
             <Menu />
              <ExperienceMain />
+             <FooterWithReviews />
           </>
         }
       />
       {/* route ديناميكي — slug بتاع كل item */}
       <Route path="/menu/:slug" element={<MenuDemo />} />
     </Routes>
+    </>
   );
 }

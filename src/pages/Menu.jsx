@@ -8,17 +8,18 @@ import { useLang } from "../context/Context";
 const MENU_DATA = {
   cold: {
     title: "Cold Drinks",
-    highlight: "& Juices",
-    subtitle: "Fresh juices, smoothies, cocktails, and soft drinks.",
-    sectionTitle: "Cold Drinks & Juices",
-    sectionTitleAr: "المشروبات الباردة والعصائر",
+    highlight: "& Juices & Milkshakes",
+    subtitle: "Fresh juices, smoothies,  Milkshakes,cocktails, and soft drinks.",
+    sectionTitle: "Cold Drinks & Juices & Milkshakes",
+    sectionTitleAr: "المشروبات الباردة والعصائر والميلك شيك",
+    
   },
   hot: {
     title: "Hot Drinks",
-    highlight: "& Milkshakes",
-    subtitle: "Hot beverages and creamy milkshakes.",
-    sectionTitle: "Hot Drinks & Milkshakes",
-    sectionTitleAr: "المشروبات الساخنة والميلك شيك",
+    highlight: "",
+    subtitle: "Hot beverages .",
+    sectionTitle: "Hot Drinks ",
+    sectionTitleAr: "المشروبات الساخنة ",
   },
   food: {
     title: "Food",
@@ -43,6 +44,8 @@ const MENU_ITEMS = {
       groups: [
         {
           price: "55.25",
+        
+         
           items: [
             { en: "Peach", ar: "خوخ" },
             { en: "Banana", ar: "موز" },
@@ -144,6 +147,37 @@ const MENU_ITEMS = {
         { price: "67.50", items: [{ en: "Red Bull", ar: "ريد بول" }] },
         { price: "60.00", items: [{ en: "Monster", ar: "مونستر" }] },
         { price: "12.50", items: [{ en: "Water (Small)", ar: "مياه صغيرة" }] },
+      ],
+    },
+  
+    {
+      title: { en: "Milkshakes", ar: "ميلك شيك" },
+      groups: [
+        {
+          price: "63.00",
+          items: [
+            { en: "Vanilla", ar: "فانيليا" },
+            { en: "Caramel", ar: "كراميل" },
+            { en: "Cantaloupe", ar: "كنتالوب" },
+            { en: "Strawberry", ar: "فراولة" },
+            { en: "Mango", ar: "مانجو" },
+          ],
+        },
+        {
+          price: "65.00",
+          items: [
+            { en: "Oreo", ar: "أوريو" },
+            { en: "HoHos", ar: "هوهوز" },
+            { en: "Boreo", ar: "بوريو" },
+          ],
+        },
+        {
+          price: "68.25",
+          items: [
+            { en: "KitKat", ar: "كيت كات" },
+            { en: "Bimbo", ar: "بيمبو" },
+          ],
+        },
       ],
     },
   ],
@@ -257,8 +291,8 @@ const menuItems = [
     title: "Cold Drinks",
     slug: "cold",
     image: "/cl.jfif",
-    desc: "Juices, smoothies, cocktails & soft drinks",
-    descAr: "عصائر، سموذي، كوكتيلات ومشروبات غازية",
+    desc: "Juices, smoothies, milkshakes, cocktails & soft drinks",
+    descAr: "عصائر، سموذي، ميلك شيك، كوكتيلات ومشروبات غازية",
   },
   {
     id: 2,
@@ -266,8 +300,8 @@ const menuItems = [
     title: "Hot Drinks",
     slug: "hot",
     image: "/hot.jfif",
-    desc: "Coffee, latte, cappuccino & milkshakes",
-    descAr: "قهوة، لاتيه، كابتشينو وميلك شيك",
+    desc: "Coffee, latte & cappuccino ",
+    descAr: "قهوة، لاتيه، كابتشينو  ",
   },
   {
     id: 3,
@@ -403,7 +437,7 @@ function MenuDemoContent({ item, onClose }) {
           /* no onToggleLang — toggle lives in navbar */
         />
 
-        <main className='px-2! '>
+        <main className=' '>
           <MenuSection
             title={isAr ? data.sectionTitleAr : data.sectionTitle}
             subtitle={isAr ? data.sectionSubtitleAr : data.sectionSubtitle}
@@ -739,7 +773,7 @@ function HeroOverlay({ item, imgRef, onDismiss }) {
           background: "var(--bg-primary, #0d0d0d)",
         }}
       >
-        <div style={{ overflowY: "auto", height: "100vh", width: "100%" }}>
+        <div style={{ overflowY: "auto",overflowX: "hidden", height: "100vh", width: "100%" }}>
           <MenuDemoContent item={item} onClose={handleCloseMenu} lang={lang} />
         </div>
       </div>

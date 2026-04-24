@@ -5,6 +5,8 @@ export default function MenuSection({
   subtitle,
   sections = [],
   lang = "en",
+ 
+
 }) {
   return (
     <section className="py-20 px-6">
@@ -32,7 +34,7 @@ export default function MenuSection({
       </div>
 
       {/* ───────── Sections (Groups) ───────── */}
-      <div className="max-w-5xl mx-auto space-y-12">
+      <div className="max-w-5xl mx-auto! px-2! md:px-0! space-y-12!">
 
         {sections.map((section, sIndex) => (
           <div key={sIndex}>
@@ -62,6 +64,7 @@ export default function MenuSection({
                       key={i}
                       name={lang === "ar" ? item.ar : item.en}
                       price={group.price}
+                      image={group.image}
                     />
                   ))}
                 </div>

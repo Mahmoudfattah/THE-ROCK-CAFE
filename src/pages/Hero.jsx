@@ -1,23 +1,47 @@
 import { useState } from "react";
-import { ArrowRight, Play, Coffee, Cake, Leaf, Star } from "lucide-react";
+import { ArrowRight, Play, Coffee, Cake, Leaf, Star, Phone } from "lucide-react";
 import { useLang } from "../context/Context";
 
 const floatingItems = [
-  { src: "/leaf.png", left: "8%", size: 34, duration: 7, delay: 0, rotate: -20, rotateEnd: 20, opacity: 0.5 },
-  { src: "/leaf.png", left: "28%", size: 24, duration: 9, delay: 1.5, rotate: 30, rotateEnd: -15, opacity: 0.4 },
-  { src: "/leaf.png", left: "58%", size: 38, duration: 8, delay: 3, rotate: -10, rotateEnd: 25, opacity: 0.55 },
-  { src: "/leaf.png", left: "82%", size: 28, duration: 10, delay: 5, rotate: 15, rotateEnd: -30, opacity: 0.35 },
-  { src: "/coffee11.webp", left: "15%", size: 20, duration: 6, delay: 0.8, rotate: 45, rotateEnd: 180, opacity: 0.6 },
+  { src: "/coffee.webp", left: "8%", size: 34, duration: 7, delay: 0, rotate: -20, rotateEnd: 20, opacity: 0.5 },
+  { src: "/coffee11.webp", left: "9%", size: 34, duration: 7, delay: 0, rotate: -20, rotateEnd: 20, opacity: 0.5 },
+  { src: "/coffee.webp", right: "22%", size: 25, duration: 6, delay: 0, rotate: -20, rotateEnd: 20, opacity: 0.5 },
+  { src: "/coffee11.webp", right: "33%", size: 27, duration: 10, delay: 0, rotate: -20, rotateEnd: 20, opacity: 0.5 },
+  { src: "/coffee2 (1).webp", left: "28%", size: 24, duration: 9, delay: 1.5, rotate: 30, rotateEnd: -15, opacity: 0.4 },
+  { src: "/coffee.webp", left: "58%", size: 38, duration: 8, delay: 3, rotate: -10, rotateEnd: 25, opacity: 0.55 },
+  { src: "/coffee2 (1).webp", left: "82%", size: 28, duration: 10, delay: 5, rotate: 15, rotateEnd: -30, opacity: 0.35 },
+  { src: "/coffee2.webp", left: "15%", size: 20, duration: 6, delay: 0.8, rotate: 45, rotateEnd: 180, opacity: 0.6 },
+  { src: "/coffee11(1).webp", left: "15%", size: 20, duration: 6, delay: 0.8, rotate: 45, rotateEnd: 180, opacity: 0.6 },
+  { src: "/coffee.webp", right: "58%", size: 38, duration: 8, delay: 3, rotate: -10, rotateEnd: 25, opacity: 0.55 },
+  // { src: "/coffee2 (1).webp", right: "82%", size: 28, duration: 10, delay: 5, rotate: 15, rotateEnd: -30, opacity: 0.35 },
+  // { src: "/coffee2.webp", right: "15%", size: 20, duration: 6, delay: 0.8, rotate: 45, rotateEnd: 180, opacity: 0.6 },
+  // { src: "/coffee11(1).webp", right: "15%", size: 20, duration: 6, delay: 0.8, rotate: 45, rotateEnd: 180, opacity: 0.6 },
   { src: "/coffee11.webp", left: "48%", size: 18, duration: 8, delay: 2.5, rotate: 0, rotateEnd: 270, opacity: 0.5 },
-  { src: "/coffee11.webp", left: "72%", size: 24, duration: 7, delay: 4, rotate: 90, rotateEnd: -90, opacity: 0.45 },
-  { src: "/coffee2 (1).webp", left: "38%", size: 16, duration: 10, delay: 3, rotate: 20, rotateEnd: -40, opacity: 0.35 },
+  { src: "/coffee11(1).webp", left: "72%", size: 24, duration: 7, delay: 4, rotate: 90, rotateEnd: -90, opacity: 0.45 },
+  { src: "/coffee.webp", right: "8%", size: 16, duration: 10.8, delay: 3, rotate: 20, rotateEnd: -40, opacity: 0.35 },
 ];
 
-
-
 export default function Hero() {
-   const { lang } = useLang();
+  const { lang } = useLang();
   const [hovered, setHovered] = useState(false);
+
+  const handleExploreMenu = () => {
+    const menuSection = document.getElementById("menu-section");
+    if (menuSection) {
+      menuSection.scrollIntoView({ behavior: "smooth" });
+    }
+  };
+
+  const t = {
+    quote1: lang === "ar" ? ` " بعض الأماكن تزورها ` : `" Some places you visit `,
+    quote2: lang === "ar" ? ` وأخرى تبقى معك " ` : 'Others stay with you."',
+    sub: lang === "ar"
+      ? "حيث تحكي كل كوب قصة من التميّز，\nوكل قضمة لحظة من المتعة الخالصة."
+      : "Where every cup tells a story of excellence,\nand every bite is a moment of pure indulgence.",
+    btnMenu: lang === "ar" ? "استكشف القائمة" : "EXPLORE MENU",
+    btnVisit: lang === "ar" ? "احجز الآن" : "Reserve Now",
+    sidebarText: lang === "ar" ? "تأسس 2020 · ذا روك كافيه" : "Est. 2020 · The Rock Café",
+  };
 
   return (
     <>
@@ -44,16 +68,14 @@ export default function Hero() {
           50%     { opacity: 0.85; }
         }
 
-        /* ── Hero background: dark + red grid lines ── */
+        /* ── Hero background ── */
         .hero-bg {
           position: absolute;
           inset: 0;
           background-color: #0d0b08;
           background-image:
-            /* Red grid lines */
             linear-gradient(rgba(180,30,30,0.07) 1px, transparent 1px),
             linear-gradient(90deg, rgba(180,30,30,0.07) 1px, transparent 1px),
-            /* Warm bokeh glow */
             radial-gradient(ellipse 60% 50% at 80% 20%, rgba(201,145,58,0.11) 0%, transparent 65%),
             radial-gradient(ellipse 40% 60% at 10% 70%, rgba(180,120,40,0.07) 0%, transparent 60%);
           background-size: 48px 48px, 48px 48px, 100% 100%, 100% 100%;
@@ -68,7 +90,6 @@ export default function Hero() {
           background-size: 48px 48px, 48px 48px, 100% 100%, 100% 100%;
         }
 
-        /* ── Organic leaf silhouette top-right (SVG inline via CSS) ── */
         .hero-bg::after {
           content: '';
           position: absolute;
@@ -82,11 +103,8 @@ export default function Hero() {
           pointer-events: none;
           opacity: 1;
         }
-        [data-theme="light"] .hero-bg::after {
-          opacity: 0.7;
-        }
+        [data-theme="light"] .hero-bg::after { opacity: 0.7; }
 
-        /* ── Bottom-left subtle leaf accent ── */
         .hero-bg::before {
           content: '';
           position: absolute;
@@ -99,6 +117,63 @@ export default function Hero() {
           background-size: contain;
           pointer-events: none;
           transform: rotate(15deg);
+        }
+
+        /* ── Coffee tree branch — desktop only ── */
+        .hero-tree-branch {
+          display: none;
+          position: absolute;
+          top: 0;
+          right: -10% ;
+          z-index: 6;
+          pointer-events: none;
+        }
+        .hero-tree-branch img {
+          width: clamp(280px, 32vw, 480px);
+          height: auto;
+          display: block;
+          /* force the image to feel embedded in the dark bg */
+          mix-blend-mode: luminosity;
+          opacity: 0.72;
+          filter: brightness(0.55) saturate(0.6);
+        }
+        /* Dark overlay that sits on top of the branch image itself */
+        .hero-tree-branch::after {
+          content: '';
+          position: absolute;
+          inset: 0;
+          // background: linear-gradient(
+          //   to left,
+          //   rgba(13,11,8,0.0) 0%,
+          //   rgba(13,11,8,0.55) 55%,
+          //   rgba(13,11,8,0.88) 100%
+          // );
+          pointer-events: none;
+        }
+        [data-theme="light"] .hero-tree-branch img {
+          mix-blend-mode: multiply;
+          opacity: 0.55;
+          filter: brightness(0.7) saturate(0.5);
+        }
+        [data-theme="light"] .hero-tree-branch::after {
+          background: linear-gradient(
+            to left,
+            rgba(245,240,232,0.0) 0%,
+            rgba(245,240,232,0.55) 55%,
+            rgba(245,240,232,0.88) 100%
+          );
+        }
+
+        /* ── Floating items — visible on ALL screen sizes ── */
+        .hero-floating-layer {
+          pointer-events: none;
+          position: absolute;
+          left: 0;
+          right: 0;
+          top: -40vh;
+          height: 140vh;
+          z-index: 8;
+          overflow: hidden;
         }
 
         /* ── Directional overlay ── */
@@ -144,7 +219,16 @@ export default function Hero() {
           color: var(--color-rock-gold, #C9913A);
           text-shadow: 0 2px 32px rgba(201,145,58,0.22);
         }
-        [data-theme="light"] .hero-quote {
+        .hero-quote-ar {
+          font-family: 'Georgia', 'Times New Roman', serif;
+          font-size: clamp(1.8rem, 8vw, 2.8rem);
+          line-height: 1.5;
+          color: var(--color-rock-gold, #C9913A);
+          text-shadow: 0 2px 32px rgba(201,145,58,0.22);
+          unicode-bidi: plaintext;
+        }
+        [data-theme="light"] .hero-quote,
+        [data-theme="light"] .hero-quote-ar {
           color: var(--color-rock-amber, #D4872A);
           text-shadow: 0 2px 16px rgba(212,135,42,0.18);
         }
@@ -156,12 +240,14 @@ export default function Hero() {
           line-height: 1.4;
           color: var(--text-muted, #8A8580);
           max-width: 390px;
+          white-space: pre-line;
+          unicode-bidi: plaintext;
         }
         [data-theme="light"] .hero-sub {
           color: var(--color-rock-ink-soft, #2D2B29);
         }
 
-        /* ── Buttons — full width equal, side by side ── */
+        /* ── Buttons ── */
         .hero-btns {
           display: flex;
           gap: 10px;
@@ -287,7 +373,7 @@ export default function Hero() {
           .lid-hovered { transform: translateY(70px) scale(.60) translateX(11px) rotate(5deg); }
         }
 
-        /* ── Features — 2×2 grid, icon above text ── */
+        /* ── Features ── */
         .features-section {
           background-color: var(--bg-secondary, #111111);
           transition: background-color 0.3s ease;
@@ -316,9 +402,7 @@ export default function Hero() {
           transition: background 0.25s;
           text-align: center;
         }
-        [data-theme="light"] .feature-cell {
-          border-color: rgba(201,145,58,0.22);
-        }
+        [data-theme="light"] .feature-cell { border-color: rgba(201,145,58,0.22); }
         .feature-cell:hover { background: rgba(201,145,58,0.04); }
         .feature-icon-ring {
           width: 90px;
@@ -348,9 +432,7 @@ export default function Hero() {
           color: var(--color-rock-gold-light, #E8B86D);
           letter-spacing: 0.03em;
         }
-        [data-theme="light"] .feature-label {
-          color: var(--color-rock-amber, #D4872A);
-        }
+        [data-theme="light"] .feature-label { color: var(--color-rock-amber, #D4872A); }
 
         /* ── Scroll indicator ── */
         .scroll-line {
@@ -361,12 +443,29 @@ export default function Hero() {
         }
 
         /* ══════════════════════════════════
-           DESKTOP LAYOUT (≥ 900px only)
-           Mobile/tablet stays 100% untouched
+           MOBILE (< 900px)
+        ══════════════════════════════════ */
+        .hero-mobile-cup-abs {
+          display: block;
+        }
+        .hero-desktop-cup {
+          display: none;
+        }
+
+        /* ══════════════════════════════════
+           DESKTOP (≥ 900px)
         ══════════════════════════════════ */
         @media (min-width: 900px) {
 
-          /* Two-column hero */
+          /* Show the tree branch on desktop */
+          .hero-tree-branch {
+            display: block !important;
+          }
+
+          .hero-mobile-cup-abs {
+            display: none !important;
+          }
+
           .hero-desktop-inner {
             display: flex !important;
             flex-direction: row !important;
@@ -379,7 +478,6 @@ export default function Hero() {
             padding-bottom: 0 !important;
           }
 
-          /* Left text column */
           .hero-desktop-left {
             display: flex !important;
             flex-direction: column !important;
@@ -388,11 +486,14 @@ export default function Hero() {
             gap: 28px !important;
             max-width: 520px !important;
             text-align: left !important;
+            position: relative;
+            z-index: 11;
           }
 
-          .hero-desktop-left .hero-quote {
-            font-size: clamp(2.8rem, 4.5vw, 4.2rem) !important;
-            line-height: 1.05 !important;
+          .hero-desktop-left .hero-quote,
+          .hero-desktop-left .hero-quote-ar {
+            font-size: clamp(2.8rem, 4.1vw, 4.2rem) !important;
+            line-height: 1.9 !important;
             text-align: left !important;
           }
 
@@ -413,31 +514,24 @@ export default function Hero() {
             font-size: 0.95rem !important;
           }
 
-          /* Hide mobile-only spacer divs */
           .hero-mobile-spacer { display: none !important; }
 
-          /* Cup column: static, right side */
-          .hero-desktop-cup-col {
-            position: relative !important;
-            right: auto !important;
-            bottom: auto !important;
-            transform: none !important;
-            width: clamp(340px, 38vw, 520px) !important;
-            flex-shrink: 0 !important;
+          .hero-desktop-cup {
+            display: block !important;
+            position: absolute !important;
+            right: 0 !important;
+            bottom: 0 !important;
+            z-index: 30 !important;
             pointer-events: auto !important;
-            display: flex !important;
-            align-items: flex-end !important;
-            justify-content: flex-end !important;
-            height: 100% !important;
           }
 
-          /* Hide the absolute-positioned mobile cup wrapper */
-          .hero-mobile-cup-abs { display: none !important; }
+          .hero-desktop-cup-inner {
+            position: relative;
+            width: clamp(400px, 42vw, 340px);
+            user-select: none;
+            cursor: pointer;
+          }
 
-          /* Show desktop cup column */
-          .hero-desktop-cup-visible { display: flex !important; }
-
-          /* Features: 4 columns row */
           .features-grid {
             grid-template-columns: repeat(4, 1fr) !important;
           }
@@ -457,10 +551,16 @@ export default function Hero() {
             text-align: left !important;
           }
         }
+
+          @media (min-width: 400px) {
+.hero-tree-branch {
+            display: block !important;
+          }
+      }
       `}</style>
 
       {/* ══════════════════════════════════
-          HERO
+          HERO SECTION
       ══════════════════════════════════ */}
       <section
         id="home"
@@ -477,11 +577,49 @@ export default function Hero() {
         {/* Organic warm background */}
         <div className="hero-bg" />
 
-        {/* Directional gradient veil */}
+        {/* ══════════════════════════════════
+            COFFEE TREE BRANCH — desktop only
+            Sits behind the overlay so the dark
+            gradient bleeds naturally over it.
+        ══════════════════════════════════ */}
+        <div className="hero-tree-branch">
+          <img
+            src="/coffeeTree2.webp"
+            alt=""
+          />
+        </div>
+
+        {/* Directional gradient veil — sits on top of tree branch */}
         <div className="hero-overlay-dir" />
 
         {/* Bottom fade */}
         <div className="hero-fade-bottom" />
+
+        {/* ══════════════════════════════════
+            FLOATING LEAVES & COFFEE BEANS
+            Now rendered at section level so
+            they appear on BOTH mobile & desktop
+        ══════════════════════════════════ */}
+        <div className="hero-floating-layer">
+          {floatingItems.map((item, i) => (
+            <img
+              key={i}
+              src={item.src}
+              alt=""
+              style={{
+                position: "absolute",
+                left: item.left,
+                right:item.right,
+                top: 0,
+                width: item.size,
+                opacity: item.opacity,
+                "--r-start": `${item.rotate}deg`,
+                "--r-end": `${item.rotateEnd}deg`,
+                animation: `floatFall ${item.duration}s linear ${item.delay}s infinite, sway ${item.duration * 0.6}s ease-in-out ${item.delay}s infinite`,
+              }}
+            />
+          ))}
+        </div>
 
         {/* ── CONTENT WRAPPER ── */}
         <div
@@ -514,10 +652,10 @@ export default function Hero() {
                 textAlign: "center",
               }}
             >
-              <h1 className="hero-quote">
-                "Some places you visit.
+              <h1 className={lang === "ar" ? "hero-quote-ar" : "hero-quote"}>
+                {t.quote1}
                 <br />
-                Others stay with you."
+                {t.quote2}
               </h1>
             </div>
 
@@ -536,67 +674,33 @@ export default function Hero() {
                 textAlign: "center",
               }}
             >
-              <p className="hero-sub">
-                Where every cup tells a story of excellence,
-                <br />
-                and every bite is a moment of pure indulgence.
-              </p>
+              <p className="hero-sub">{t.sub}</p>
               <div className="hero-btns">
-                <button className="hero-btn-primary">
-                  <span>EXPLORE MENU</span>
+                {/* ── EXPLORE MENU → scrolls to #menu-section ── */}
+                <button className="hero-btn-primary" onClick={handleExploreMenu}>
+                  <span>{t.btnMenu}</span>
                   <ArrowRight size={16} strokeWidth={1.8} />
                 </button>
-                <button className="hero-btn-ghost">
-                  <Play size={14} strokeWidth={1.8} />
-                  <span>VISIT US</span>
-                </button>
+                <a className="hero-btn-ghost" href="tel:+201023456789">
+                  <Phone size={14} strokeWidth={1.8} />
+                  <span>{t.btnVisit}</span>
+                </a>
               </div>
             </div>
           </div>
-
-          {/* ── RIGHT COLUMN: desktop cup (hidden on mobile) ── */}
-          <div
-            className="hero-desktop-cup-visible"
-            style={{ display: "none", alignItems: "flex-end", justifyContent: "flex-end" }}
-          >
-            <div
-              style={{
-                position: "relative",
-                width: "clamp(340px, 38vw, 520px)",
-                userSelect: "none",
-                cursor: "pointer",
-                alignSelf: "flex-end",
-              }}
-              onClick={() => setHovered((h) => !h)}
-            >
-              {/* Smoke */}
-              <div style={{ pointerEvents: "none", position: "absolute", top: "40px", left: "20%", transform: "translateX(-50%)", zIndex: 40 }}>
-                {[...Array(6)].map((_, i) => (
-                  <span key={i} style={{ position: "absolute", width: `${20 + i * 6}px`, height: `${20 + i * 6}px`, left: `${i * 4}px`, borderRadius: "50%", background: "rgba(255,255,255,0.2)", filter: "blur(14px)", animation: `smokeRise ${3 + i * 0.4}s ease-out ${i * 0.5}s infinite` }} />
-                ))}
-              </div>
-              {/* Lid */}
-              <div className={`lid ${hovered ? "lid-hovered" : "lid-normal"}`}>
-                <img src="/cup2.webp" alt="" style={{ width: "100%", filter: "drop-shadow(0 20px 40px rgba(0,0,0,0.55))" }} />
-              </div>
-              {/* Cup body */}
-              <div style={{ transform: hovered ? "rotate(5deg) translateY(8px) scale(1.04)" : "rotate(0deg)", transition: "transform .55s cubic-bezier(.34,1.56,.64,1)", marginTop: "-20px", position: "relative", zIndex: 5 }}>
-                <img src="/4.png" alt="" style={{ width: "100%", filter: "drop-shadow(0 20px 40px rgba(0,0,0,0.5))" }} />
-              </div>
-              {/* Gold glow */}
-              <div style={{ position: "absolute", bottom: "-20px", left: "50%", transform: "translateX(-50%)", width: "150px", height: "28px", borderRadius: "50%", background: "var(--color-rock-gold, #C9913A)", opacity: 0.28, filter: "blur(22px)", zIndex: 1 }} />
-            </div>
-          </div>
-
         </div>
 
         {/* ── SIDEBAR PILL ── */}
         <div className="sidebar-pill">
           <span className="sidebar-dot" />
-          <span className="sidebar-text">Est. 2020 · The Rock Café</span>
+          <span className="sidebar-text">{t.sidebarText}</span>
         </div>
 
-        {/* ── CUP LAYER (mobile/tablet absolute — hidden on desktop) ── */}
+        {/* ══════════════════════════════════
+            MOBILE CUP (< 900px) — UNCHANGED
+            (floating items removed from here;
+             they now live in hero-floating-layer above)
+        ══════════════════════════════════ */}
         <div
           className="hero-mobile-cup-abs"
           style={{
@@ -624,44 +728,15 @@ export default function Hero() {
                 cursor: "pointer",
               }}
               onClick={() => setHovered((h) => !h)}
+              // onMouseEnter={() => setHovered((h) => !h)}
+              // onMouseLeave={() => setHovered((h) => !h)}
             >
-              {/* Floating items */}
-              <div
-                style={{
-                  pointerEvents: "none",
-                  position: "absolute",
-                  inset: 0,
-                  height: "140vh",
-                  top: "-40vh",
-                  zIndex: 50,
-                  overflow: "hidden",
-                }}
-              >
-                {floatingItems.map((item, i) => (
-                  <img
-                    key={i}
-                    src={item.src}
-                    alt=""
-                    style={{
-                      position: "absolute",
-                      left: item.left,
-                      top: 0,
-                      width: item.size,
-                      opacity: item.opacity,
-                      "--r-start": `${item.rotate}deg`,
-                      "--r-end": `${item.rotateEnd}deg`,
-                      animation: `floatFall ${item.duration}s linear ${item.delay}s infinite, sway ${item.duration * 0.6}s ease-in-out ${item.delay}s infinite`,
-                    }}
-                  />
-                ))}
-              </div>
-
               {/* Smoke */}
               <div
                 style={{
                   pointerEvents: "none",
                   position: "absolute",
-                  top: "40px",
+                  top: "50px",
                   left: "50%",
                   transform: "translateX(-50%)",
                   zIndex: 40,
@@ -697,8 +772,8 @@ export default function Hero() {
               <div
                 style={{
                   transform: hovered
-                    ? "rotate(5deg) translateY(8px) scale(1.04)"
-                    : "rotate(0deg)",
+                    ? "rotate(5deg) translateY(-18px) scale(1.04)"
+                    : "rotate(0deg) translateY(-20px)",
                   transition: "transform .55s cubic-bezier(.34,1.56,.64,1)",
                   marginTop: "-20px",
                   position: "relative",
@@ -731,12 +806,92 @@ export default function Hero() {
             </div>
           </div>
         </div>
-      </section>
 
-      {/* ══════════════════════════════════
-          FEATURES — 4-column grid
-      ══════════════════════════════════ */}
-     
+        {/* ══════════════════════════════════
+            DESKTOP CUP (≥ 900px)
+        ══════════════════════════════════ */}
+        <div className="hero-desktop-cup">
+          <div
+            className="hero-desktop-cup-inner"
+                onMouseEnter={() => setHovered((h) => !h)}
+              onMouseLeave={() => setHovered((h) => !h)}
+          >
+            {/* Smoke */}
+            <div
+              style={{
+                pointerEvents: "none",
+                position: "absolute",
+                top: "120px",
+                left: "20%",
+                transform: "translateX(-50%)",
+                zIndex: 40,
+              }}
+            >
+              {[...Array(6)].map((_, i) => (
+                <span
+                  key={i}
+                  style={{
+                    position: "absolute",
+                    width: `${20 + i * 6}px`,
+                    height: `${20 + i * 6}px`,
+                    left: `${i * 4}px`,
+                    borderRadius: "50%",
+                    background: "rgba(255,255,255,0.2)",
+                    filter: "blur(14px)",
+                    animation: `smokeRise ${3 + i * 0.4}s ease-out ${i * 0.5}s infinite`,
+                  }}
+                />
+              ))}
+            </div>
+
+            {/* Lid */}
+            <div className={`lid ${hovered ? "lid-hovered" : "lid-normal"}`}>
+              <img
+                src="/cup2.webp"
+                alt=""
+                style={{ width: "100%", filter: "drop-shadow(0 20px 40px rgba(0,0,0,0.55))" }}
+              />
+            </div>
+
+            {/* Cup body */}
+            <div
+              style={{
+                transform: hovered
+                  ? "rotate(5deg) translateY(8px) scale(1.04)"
+                  : "rotate(0deg)",
+                transition: "transform .55s cubic-bezier(.34,1.56,.64,1)",
+                marginTop: "-20px",
+                position: "relative",
+                zIndex: 5,
+              }}
+            >
+              <img
+                src="/4.png"
+                alt=""
+                style={{ width: "100%", filter: "drop-shadow(0 20px 40px rgba(0,0,0,0.5))" }}
+              />
+            </div>
+
+            {/* Gold glow */}
+            <div
+              style={{
+                position: "absolute",
+                bottom: "-20px",
+                left: "50%",
+                transform: "translateX(-50%)",
+                width: "200px",
+                height: "32px",
+                borderRadius: "50%",
+                background: "var(--color-rock-gold, #C9913A)",
+                opacity: 0.28,
+                filter: "blur(28px)",
+                zIndex: 1,
+              }}
+            />
+          </div>
+        </div>
+
+      </section>
     </>
   );
 }
