@@ -3,9 +3,13 @@ export default function MenuItem({ name, price, desc }) {
     <div className="py-6">
       <div className="flex items-start gap-4 py-2!">
         {/* 🔴 Icon Circle */}
-        <div className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full border border-(--border-default) text-[var(--accent-primary)]">
-          ☕
-        </div>
+        <div className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full border border-[var(--border-default)] bg-[var(--surface-secondary)] overflow-hidden">
+  <img
+    src="/circle-icon.png"
+    alt="menu icon"
+    className="h-full w-full object-cover opacity-90"
+  />
+</div>
 
         {/* Content */}
         <div className="flex-1">
