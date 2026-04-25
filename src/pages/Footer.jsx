@@ -604,10 +604,16 @@ function Footer({ lang, isRTL }) {
               <MapPin size={15} className="ft-contact-icon" />
               {CONTACT.address[lang] ?? CONTACT.address.en}
             </span>
-            <a href={`tel:${CONTACT.phone[lang] ?? CONTACT.phone.en}`} className="ft-contact-row">
-              <Phone size={15} className="ft-contact-icon" />
-              {CONTACT.phone[lang] ?? CONTACT.phone.en}
-            </a>
+          <a
+  href={`tel:${CONTACT.phone[lang] ?? CONTACT.phone.en}`}
+  className="ft-contact-row"
+>
+  <Phone size={15} className="ft-contact-icon" />
+
+  <span dir="ltr" className="inline-block">
+    {CONTACT.phone[lang] ?? CONTACT.phone.en}
+  </span>
+</a>
             <a href={`mailto:${CONTACT.email}`} className="ft-contact-row">
               <Mail size={15} className="ft-contact-icon" />
               {CONTACT.email}
