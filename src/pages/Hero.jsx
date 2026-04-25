@@ -36,7 +36,7 @@ export default function Hero() {
     quote1: lang === "ar" ? ` " بعض الأماكن تزورها ` : `" Some places you visit `,
     quote2: lang === "ar" ? ` وأخرى تبقى معك " ` : 'Others stay with you."',
     sub: lang === "ar"
-      ? "حيث تحكي كل كوب قصة من التميّز，\nوكل قضمة لحظة من المتعة الخالصة."
+      ? "حيث يروي كل فنجان قصة تميز，\nوكل قضمة لحظة من المتعة الخالصة. "
       : "Where every cup tells a story of excellence,\nand every bite is a moment of pure indulgence.",
     btnMenu: lang === "ar" ? "استكشف القائمة" : "EXPLORE MENU",
     btnVisit: lang === "ar" ? "احجز الآن" : "Reserve Now",

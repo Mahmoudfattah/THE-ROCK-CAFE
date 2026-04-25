@@ -28,7 +28,9 @@ const CONTACT = {
     en: "Abu AR Rish Qebli, Aswan (Near Nile Corniche)",
     ar: "أبو الريش قبلي، أسوان (قريب من كورنيش النيل)",
   },
-  phone: "+20 102 345 6789",
+  phone: {en: "+20 102 345 6789",
+    ar:'+٢٠ ١٠٢ ٣٤٥ ٦٧٨٩',
+  },
   email: "info@therockaswan.com",
 };
 
@@ -602,9 +604,9 @@ function Footer({ lang, isRTL }) {
               <MapPin size={15} className="ft-contact-icon" />
               {CONTACT.address[lang] ?? CONTACT.address.en}
             </span>
-            <a href={`tel:${CONTACT.phone}`} className="ft-contact-row">
+            <a href={`tel:${CONTACT.phone[lang] ?? CONTACT.phone.en}`} className="ft-contact-row">
               <Phone size={15} className="ft-contact-icon" />
-              {CONTACT.phone}
+              {CONTACT.phone[lang] ?? CONTACT.phone.en}
             </a>
             <a href={`mailto:${CONTACT.email}`} className="ft-contact-row">
               <Mail size={15} className="ft-contact-icon" />
