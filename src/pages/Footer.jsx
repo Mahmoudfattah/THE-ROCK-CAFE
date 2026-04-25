@@ -600,10 +600,15 @@ function Footer({ lang, isRTL }) {
             {isRTL ? "تواصل معنا" : "Contact Us"}
           </h3>
           <div className="ft-contact">
-            <span className="ft-contact-row">
-              <MapPin size={15} className="ft-contact-icon" />
-              {CONTACT.address[lang] ?? CONTACT.address.en}
-            </span>
+            <a
+  href="https://www.google.com/maps/search/?api=1&query=The+Rock+Aswan"
+  target="_blank"
+  rel="noopener noreferrer"
+  className="ft-contact-row"
+>
+  <MapPin size={15} className="ft-contact-icon" />
+  {CONTACT.address[lang] ?? CONTACT.address.en}
+</a>
           <a
   href={`tel:${CONTACT.phone[lang] ?? CONTACT.phone.en}`}
   className="ft-contact-row"
