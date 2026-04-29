@@ -751,8 +751,8 @@ export default function Hero() {
             animate="visible"
             style={{
               position: "absolute",
-              right: "0px",
-              bottom: "0px",
+              right: "-20px",
+              bottom: "110px",
               transform: "translate(5%, -22%)",
               pointerEvents: "auto",
             }}
@@ -765,7 +765,7 @@ export default function Hero() {
               <div
                 style={{
                   position: "relative",
-                  width: "clamp(310px, 60vw, 400px)",
+                  width: "clamp(330px, 60vw, 400px)",
                   userSelect: "none",
                   cursor: "pointer",
                 }}
@@ -811,8 +811,8 @@ export default function Hero() {
                 <div
                   style={{
                     transform: hovered
-                      ? "rotate(5deg) translateY(-18px) scale(1.04)"
-                      : "rotate(0deg) translateY(-20px)",
+                      ? "rotate(4.5deg) translateY(-23px) scale(1.05)"
+                      : "rotate(0deg) translateY(-24px)",
                     transition: "transform .55s cubic-bezier(.34,1.56,.64,1)",
                     marginTop: "-20px",
                     position: "relative",
