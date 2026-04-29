@@ -2,11 +2,7 @@ import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X, Sun, Moon } from "lucide-react";
 import { useLang } from "../context/Context";
-import {
-  fadeDown,
-  fadeUp,
-  staggerContainer,
-} from "../animations/animation";
+import { fadeDown, staggerContainer } from "../animations/animation";
 
 const links = {
   en: [
@@ -30,8 +26,9 @@ export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [active,   setActive]   = useState("home");
   const [open,     setOpen]     = useState(false);
+  // const [lang,     setLang]     = useState("en");
   const { lang, setLang } = useLang();
-  const [theme, setTheme] = useState(() =>
+  const [theme,    setTheme]    = useState(() =>
     typeof window !== "undefined"
       ? localStorage.getItem("rock-theme") || "dark"
       : "dark"
@@ -41,20 +38,24 @@ export default function Navbar() {
   const isDark = theme === "dark";
   const currentLinks = links[lang];
 
+  /* ── Apply theme ── */
   useEffect(() => {
     document.documentElement.setAttribute("data-theme", theme);
     localStorage.setItem("rock-theme", theme);
   }, [theme]);
 
+  /* ── Apply lang (no dir change) ── */
   useEffect(() => {
     document.documentElement.setAttribute("lang", isAR ? "ar" : "en");
   }, [isAR]);
 
+  /* ── Lock body scroll when drawer open ── */
   useEffect(() => {
     document.body.style.overflow = open ? "hidden" : "";
     return () => { document.body.style.overflow = ""; };
   }, [open]);
 
+  /* ── Scroll + active section ── */
   useEffect(() => {
     const onScroll = () => {
       setScrolled(window.scrollY > 80);
@@ -73,13 +74,14 @@ export default function Navbar() {
     return () => window.removeEventListener("scroll", onScroll);
   }, [currentLinks]);
 
+  /* ── Close drawer on resize ── */
   useEffect(() => {
     const onResize = () => { if (window.innerWidth >= 768) setOpen(false); };
     window.addEventListener("resize", onResize);
     return () => window.removeEventListener("resize", onResize);
   }, []);
 
-  const scrollToSection = (id: string) => {
+  const scrollToSection = (id) => {
     document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
     setOpen(false);
   };
@@ -87,11 +89,23 @@ export default function Navbar() {
   const toggleTheme = () => setTheme(prev => prev === "dark" ? "light" : "dark");
   const toggleLang  = () => setLang(prev  => prev === "en"   ? "ar"   : "en");
 
-  const navBg = "bg-transparent";
+  /* ── Nav bg ── */
+  const navBg =
+  // scrolled
+  //   ? isDark
+  //     ? "bg-[var(--bg-secondary)]/80 backdrop-blur-xl border-b border-[var(--border-subtle)] shadow-xl"
+  //     : "bg-[var(--bg-elevated)]/85 backdrop-blur-xl border-b border-[var(--border-default)] shadow-md"
+  //   :
+    "bg-transparent";
 
-  /* ── Pill Controls (unchanged logic) ── */
+  /* ─────────────────────────────────────────────────────────────────────────
+     PILL CONTROLS — always fixed, always LTR layout, always on top
+     ───────────────────────────────────────────────────────────────────────── */
   const PillControls = () => (
-    <div className="flex items-center gap-2" style={{ direction: "ltr" }}>
+    <div
+      className="flex items-center gap-2"
+      style={{ direction: "ltr" }}
+    >
       {/* Theme pill */}
       <button
         onClick={toggleTheme}
@@ -138,55 +152,38 @@ export default function Navbar() {
     </div>
   );
 
-  /* ── Mobile drawer variants ── */
-  const drawerVariants = {
-    hidden: { x: "100%", opacity: 0 },
-    visible: {
-      x: 0,
-      opacity: 1,
-      transition: { duration: 0.35, ease: "easeOut" },
-    },
-    exit: {
-      x: "100%",
-      opacity: 0,
-      transition: { duration: 0.28, ease: "easeIn" },
-    },
-  };
-
-  const backdropVariants = {
-    hidden:  { opacity: 0 },
-    visible: { opacity: 1, transition: { duration: 0.3 } },
-    exit:    { opacity: 0, transition: { duration: 0.25 } },
-  };
-
   return (
     <>
       {/* ══════════════════════════════════════════════════════════════════
-          HEADER
-      ══════════════════════════════════════════════════════════════════ */}
+          HEADER — logo + desktop nav + static controls + hamburger
+          ══════════════════════════════════════════════════════════════════ */}
+
+      {/* header → motion.header | added: variants, initial, animate, transition */}
       <motion.header
-        className={`fixed top-0 left-0 w-full z-50 transition-all duration-500 py-3 ${navBg}`}
+        className={`
+          fixed top-0 left-0 w-full z-50
+          transition-all duration-500 py-3
+          ${navBg}
+        `}
         style={{ direction: "ltr" }}
         variants={fadeDown}
         initial="hidden"
         animate="visible"
-        // delay the navbar slightly so hero content can start loading
         transition={{ delay: 0.2, duration: 0.6, ease: "easeOut" }}
       >
         <div className="container flex items-center justify-between px-4 md:px-8 h-14">
 
-          {/* Logo */}
-          <motion.button
+          {/* Logo — unchanged */}
+          <button
             onClick={() => scrollToSection("home")}
             aria-label="Go to home"
             className="focus-visible:outline-none shrink-0"
-            whileHover={{ scale: 1.05 }}
-            transition={{ duration: 0.2 }}
           >
             <img src="/logo.png" alt="Logo" className="w-20 md:w-24 object-contain" />
-          </motion.button>
+          </button>
 
-          {/* Desktop nav — staggered links */}
+          {/* Desktop nav — nav → motion.nav | links → motion.button */}
+          {/* added: staggerContainer on nav, fadeDown variant on each link */}
           <motion.nav
             className="hidden md:flex items-center gap-8"
             style={{ direction: isAR ? "rtl" : "ltr" }}
@@ -199,7 +196,6 @@ export default function Navbar() {
                 key={link.id}
                 onClick={() => scrollToSection(link.id)}
                 variants={fadeDown}
-                whileHover={{ y: -2, transition: { duration: 0.18 } }}
                 className={`
                   relative text-sm font-medium tracking-wide
                   transition-colors duration-300 cursor-pointer
@@ -211,6 +207,7 @@ export default function Navbar() {
                 `}
               >
                 {link.label}
+                {/* underline indicator — unchanged */}
                 <span className={`
                   absolute -bottom-1.5 left-0 h-[2px] rounded-full bg-[var(--accent-primary)]
                   transition-all duration-300
@@ -220,17 +217,11 @@ export default function Navbar() {
             ))}
           </motion.nav>
 
-          {/* Right cluster */}
-          <motion.div
-            className="flex items-center gap-3"
-            variants={fadeDown}
-            initial="hidden"
-            animate="visible"
-            transition={{ delay: 0.45, duration: 0.5, ease: "easeOut" }}
-          >
+          {/* Right cluster — unchanged */}
+          <div className="flex items-center gap-3">
             <PillControls />
 
-            {/* Hamburger */}
+            {/* Hamburger / X — unchanged */}
             <button
               onClick={() => setOpen(prev => !prev)}
               aria-label={open ? "Close menu" : "Open menu"}
@@ -245,72 +236,70 @@ export default function Navbar() {
                 className={`absolute transition-all duration-300 ${open ? "opacity-100 scale-100 rotate-0" : "opacity-0 scale-75 -rotate-90"}`}
               />
             </button>
-          </motion.div>
+          </div>
         </div>
       </motion.header>
 
       {/* ══════════════════════════════════════════════════════════════════
-          MOBILE DRAWER — slides in from right with AnimatePresence
-      ══════════════════════════════════════════════════════════════════ */}
+          MOBILE DROPDOWN MENU
+          Only change: outer div → AnimatePresence + motion.div
+          All classes are identical to the original
+          ══════════════════════════════════════════════════════════════════ */}
       <AnimatePresence>
         {open && (
-          <>
-            {/* Drawer panel */}
-            <motion.div
-              key="drawer"
-              className="fixed top-0 right-0 w-75 min-h-full z-40 md:hidden bg-[var(--bg-secondary)] border-l border-[var(--border-subtle)] shadow-2xl"
-              variants={drawerVariants}
-              initial="hidden"
-              animate="visible"
-              exit="exit"
+          <motion.div
+            key="mobile-drawer"
+            className={`
+              fixed top-0 min-h-full right-0 w-75 z-40 md:hidden
+              bg-[var(--bg-secondary)] border-b border-[var(--border-subtle)]
+              shadow-2xl overflow-hidden
+            `}
+            initial={{ x: "100%", opacity: 0 }}
+            animate={{ x: 0,      opacity: 1 }}
+            exit={{    x: "100%", opacity: 0 }}
+            transition={{ duration: 0.35, ease: "easeOut" }}
+          >
+            <nav
+              className="flex pt-20! flex-col px-6!  py-4! gap-6! "
+              style={{ direction: isAR ? "rtl" : "ltr" }}
             >
-              <motion.nav
-                className="flex flex-col pt-20 px-6 py-4 gap-1"
-                style={{ direction: isAR ? "rtl" : "ltr" }}
-                variants={staggerContainer(0.07, 0.15)}
-                initial="hidden"
-                animate="visible"
-              >
-                {currentLinks.map((link) => (
-                  <motion.button
-                    key={link.id}
-                    onClick={() => scrollToSection(link.id)}
-                    variants={fadeUp}
-                    whileHover={{
-                      x: isAR ? -4 : 4,
-                      color: "var(--accent-primary)",
-                      transition: { duration: 0.18 },
-                    }}
-                    className={`
-                      py-4 text-lg font-semibold
-                      border-b border-[var(--border-subtle)] last:border-0
-                      transition-colors duration-200 cursor-pointer
-                      ${isAR ? "text-right font-[Cairo,sans-serif]" : "text-left"}
-                      ${active === link.id
-                        ? "text-[var(--accent-primary)]"
-                        : "text-[var(--text-primary)]"
-                      }
-                    `}
-                  >
-                    {link.label}
-                  </motion.button>
-                ))}
-              </motion.nav>
-            </motion.div>
-
-            {/* Backdrop */}
-            <motion.div
-              key="backdrop"
-              onClick={() => setOpen(false)}
-              className="fixed inset-0 z-30 bg-black/40 backdrop-blur-sm md:hidden"
-              variants={backdropVariants}
-              initial="hidden"
-              animate="visible"
-              exit="exit"
-            />
-          </>
+              {currentLinks.map((link, i) => (
+                /* button → motion.button | added: initial/animate/transition for stagger */
+                /* all existing classes kept exactly as-is */
+                <motion.button
+                  key={link.id}
+                  onClick={() => scrollToSection(link.id)}
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0  }}
+                  transition={{ delay: i * 0.05, duration: 0.28, ease: "easeOut" }}
+                  className={`
+                    py-4! text-lg font-semibold 
+                    border-b border-[var(--border-subtle)] last:border-0
+                    transition-all duration-300 cursor-pointer
+                    ${isAR ? "text-right font-[Cairo,sans-serif]" : "text-left"}
+                    ${active === link.id
+                      ? "text-[var(--accent-primary)] translate-x-1"
+                      : "text-[var(--text-primary)] hover:text-[var(--accent-primary)] hover:translate-x-1"
+                    }
+                  `}
+                >
+                  {link.label}
+                </motion.button>
+              ))}
+            </nav>
+          </motion.div>
         )}
       </AnimatePresence>
+
+      {/* Backdrop — unchanged */}
+      <div
+        onClick={() => setOpen(false)}
+        className={`
+          fixed inset-0 z-30 bg-black/40 backdrop-blur-sm md:hidden
+          transition-opacity duration-300
+          ${open ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"}
+        `}
+      />
     </>
   );
 }
