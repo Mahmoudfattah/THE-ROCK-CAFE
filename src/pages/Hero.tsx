@@ -379,7 +379,7 @@ export default function Hero() {
         .lid-normal  { transform: translateY(160px) scale(.58) translateX(-16px); }
         .lid-hovered { transform: translateY(130px) scale(.60) translateX(20px) rotate(5deg); }
         @media (max-width: 640px) {
-          .lid-normal  { transform: translateY(85px) scale(.58) translateX(-10px); }
+          .lid-normal  { transform: translateY(85px) scale(.56) translateX(-14px); }
           .lid-hovered { transform: translateY(70px) scale(.60) translateX(11px) rotate(5deg); }
         }
 
