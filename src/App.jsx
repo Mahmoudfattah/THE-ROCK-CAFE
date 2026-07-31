@@ -8,6 +8,7 @@ import ExperienceMain from "./pages/ExperienceMain";
 import FooterWithReviews from "./pages/Footer";
 import FloatingCTA from "./pages/FloatingCta";
 import Navbar from "./pages/Navbar";
+import GsapPlayground from "./pages/Gsaplayground";
 
 export default function App() {
   return (
@@ -18,12 +19,12 @@ export default function App() {
         path="/"
         element={
           <>
-            <Navbar />
-            <Hero />
+            <GsapPlayground />
+            {/* <Hero />
             <Experience />
             <Menu />
              <ExperienceMain />
-             <FooterWithReviews />
+             <FooterWithReviews /> */}
           </>
         }
       />
