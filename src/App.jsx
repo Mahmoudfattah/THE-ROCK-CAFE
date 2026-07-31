@@ -19,12 +19,12 @@ export default function App() {
         path="/"
         element={
           <>
-            <GsapPlayground />
-            {/* <Hero />
+           
+             <Hero />
             <Experience />
             <Menu />
              <ExperienceMain />
-             <FooterWithReviews /> */}
+             <FooterWithReviews /> 
           </>
         }
       />
