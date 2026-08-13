@@ -343,7 +343,7 @@ const PILL =
   "relative flex items-center justify-between rounded-full border border-[var(--border-default)] bg-[var(--bg-surface)] cursor-pointer transition-all duration-300 shrink-0";
 
 export default function Navbar() {
-  const [scrolled, setScrolled] = useState(false);
+  const [ setScrolled] = useState(false);
   const [active,   setActive]   = useState("home");
   const [open,     setOpen]     = useState(false);
   // const [lang,     setLang]     = useState("en");

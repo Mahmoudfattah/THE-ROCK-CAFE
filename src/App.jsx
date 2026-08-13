@@ -13,24 +13,24 @@ import GsapPlayground from "./pages/Gsaplayground";
 export default function App() {
   return (
     <>
-    {/* <FloatingCTA /> */}
-    <Routes>
-      <Route
-        path="/"
-        element={
-          <>
-           
-             <Hero />
-            <Experience />
-            <Menu />
-             <ExperienceMain />
-             <FooterWithReviews /> 
-          </>
-        }
-      />
-      {/* route ديناميكي — slug بتاع كل item */}
-      <Route path="/menu/:slug" element={<MenuDemo />} />
-    </Routes>
+      {/* <FloatingCTA /> */}
+      <Routes>
+        <Route
+          path="/"
+          element={
+            <>
+              <Navbar />
+              <Hero />
+              <Experience />
+              <Menu />
+              <ExperienceMain />
+              <FooterWithReviews />
+            </>
+          }
+        />
+        {/* route ديناميكي — slug بتاع كل item */}
+        <Route path="/menu/:slug" element={<MenuDemo />} />
+      </Routes>
     </>
   );
 }
